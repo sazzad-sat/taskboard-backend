@@ -1,4 +1,4 @@
-import admin from 'https://esm.sh/firebase-admin@11.9';
+import admin from 'https://cdn.skypack.dev/firebase-admin@11.10.1';
 import { Status } from "https://deno.land/std@0.193.0/http/http_status.ts";
 import { Router } from "https://deno.land/x/oak@v12.6.0/mod.ts";
 import { FIREBASE_SERVICE_ACCOUNT_KEY, HASURA_ADMIN_SECRET, HASURA_URL } from "../envKey.ts";
@@ -12,14 +12,14 @@ const router = new Router();
 router.use(async ({ request, response }, next) => {
     const token = request.headers.get('Authorization')!;
     console.log(token);
-    
+
 
     try {
         await app.auth().verifyIdToken(token, true);
         await next();
     } catch (e) {
         console.error(e);
-        
+
         response.status = Status.Unauthorized;
         response.body = {
             message: e.message
