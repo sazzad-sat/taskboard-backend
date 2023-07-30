@@ -11,6 +11,7 @@ const router = new Router();
 
 router.use(async ({ request, response }, next) => {
     const token = request.headers.get('Authorization')!;
+    console.log(token);
 
     try {
         await app.auth().verifyIdToken(token, true);
