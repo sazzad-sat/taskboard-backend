@@ -3,34 +3,34 @@ import { Status } from "https://deno.land/std@0.193.0/http/http_status.ts";
 import { Router } from "https://deno.land/x/oak@v12.6.0/mod.ts";
 import { FIREBASE_SERVICE_ACCOUNT_KEY, HASURA_ADMIN_SECRET, HASURA_URL } from "../envKey.ts";
 
-// const app = admin.initializeApp({
-//     credential: admin.credential.cert(JSON.parse(Deno.env.get(FIREBASE_SERVICE_ACCOUNT_KEY)!))
-// });
+const app = admin.initializeApp({
+    credential: admin.credential.cert(JSON.parse(Deno.env.get(FIREBASE_SERVICE_ACCOUNT_KEY)!))
+});
 
 const router = new Router();
 
-// router.use(({ request, response }, next) => {
-//     const token = request.headers.get('Authorization')!;
-//     console.log(token);
+router.use(({ request, response }, next) => {
+    const token = request.headers.get('Authorization')!;
+    console.log(token);
 
 
-//     try {
-//         app.auth().verifyIdToken(token, true)
-//             .then(() => {
-//                 return next();
-//             })
-//             .catch((error) => {
-//                 console.error(error);
-//             });
-//     } catch (e) {
-//         console.error(e);
+    try {
+        app.auth().verifyIdToken(token, true)
+            .then(() => {
+                return next();
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    } catch (e) {
+        console.error(e);
 
-//         response.status = Status.Unauthorized;
-//         response.body = {
-//             message: e.message
-//         };
-//     }
-// });
+        response.status = Status.Unauthorized;
+        response.body = {
+            message: e.message
+        };
+    }
+});
 
 router.post('/register-user', async ({ request, response }) => {
     const reqBody = await request.body().value;
