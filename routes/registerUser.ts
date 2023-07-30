@@ -10,7 +10,7 @@ const app = admin.initializeApp({
 const router = new Router();
 
 router.use(async ({ request, response }, next) => {
-    const token = request.headers.get('Authorization')!.replace('Bearer ', '');
+    const token = request.headers.get('Authorization')!;
     console.log(token);
 
     try {
