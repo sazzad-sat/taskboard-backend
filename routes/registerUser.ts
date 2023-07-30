@@ -1,4 +1,4 @@
-import admin from "https://unpkg.com/firebase-admin@11.9.0/lib/index.js";
+import admin from "https://dev.jspm.io/firebase-admin@11.10.1";
 import { Status } from "https://deno.land/std@0.193.0/http/http_status.ts";
 import { Router } from "https://deno.land/x/oak@v12.6.0/mod.ts";
 import { FIREBASE_SERVICE_ACCOUNT_KEY, HASURA_ADMIN_SECRET, HASURA_URL } from "../envKey.ts";
