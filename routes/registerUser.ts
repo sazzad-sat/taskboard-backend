@@ -14,7 +14,7 @@ router.use(async ({ request, response }, next) => {
     console.log(token);
 
     try {
-        await app.auth().verifyIdToken(token, true);
+        await app.auth().verifyIdToken(token);
         await next();
     } catch (e) {
         response.status = Status.Unauthorized;
