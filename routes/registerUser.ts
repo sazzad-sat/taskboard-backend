@@ -4,7 +4,7 @@ import { Router } from "https://deno.land/x/oak@v12.6.0/mod.ts";
 import { FIREBASE_SERVICE_ACCOUNT_KEY, HASURA_ADMIN_SECRET, HASURA_URL } from "../envKey.ts";
 
 const app = admin.initializeApp({
-    credential: admin.credential.cert(JSON.parse(Deno.env.get(FIREBASE_SERVICE_ACCOUNT_KEY)!))
+    credential: admin.credential.cert(Deno.env.get(FIREBASE_SERVICE_ACCOUNT_KEY)!)
 });
 
 const router = new Router();
