@@ -10,8 +10,7 @@ const app = admin.initializeApp({
 const router = new Router();
 
 router.use(async ({ request, response }, next) => {
-    const token = request.headers.get('Authorization')!;
-    console.log(token);
+    const token = request.headers.get('Authorization')!.split(" ")[1];
 
     try {
         await app.auth().verifyIdToken(token);
