@@ -13,4 +13,4 @@ app.use(ctx => {
     })
 })
 
-await app.listen({ port: 8080 });
+await app.listen();
