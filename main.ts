@@ -9,7 +9,7 @@ app.use(async (ctx, next) => {
 
 app.use(ctx => {
     ctx.response.body = JSON.stringify({
-        success: true
+        success: "nice"
     })
 })
 
