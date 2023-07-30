@@ -9,14 +9,19 @@ const app = admin.initializeApp({
 
 const router = new Router();
 
-router.use(async ({ request, response }, next) => {
+router.use(({ request, response }, next) => {
     const token = request.headers.get('Authorization')!;
     console.log(token);
 
 
     try {
-        await app.auth().verifyIdToken(token, true);
-        await next();
+        app.auth().verifyIdToken(token, true)
+            .then(() => {
+                return next();
+            })
+            .catch((error) => {
+                console.error(error);
+            });
     } catch (e) {
         console.error(e);
 
