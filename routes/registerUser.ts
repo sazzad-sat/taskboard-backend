@@ -1,4 +1,6 @@
-import admin from "https://esm.sh/v129/firebase-admin@11.10.1";
+import { createRequire } from "https://deno.land/std@0.112.0/node/module.ts";
+const require = createRequire(import.meta.url);
+const admin = require('firebase-admin');
 import { Status } from "https://deno.land/std@0.193.0/http/http_status.ts";
 import { Router } from "https://deno.land/x/oak@v12.6.0/mod.ts";
 import { FIREBASE_SERVICE_ACCOUNT_KEY, HASURA_ADMIN_SECRET, HASURA_URL } from "../envKey.ts";
@@ -19,7 +21,7 @@ router.use(({ request, response }, next) => {
             .then(() => {
                 return next();
             })
-            .catch((error) => {
+            .catch((error: Error) => {
                 console.error(error);
             });
     } catch (e) {
